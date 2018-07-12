@@ -1,0 +1,93 @@
+spring:
+  profiles: #不同环境取不同配置
+    active: test
+  output:
+    ansi:
+      enabled: detect
+  main:
+#    banner-mode: log
+  mvc:
+    favicon: #网站图标
+      enabled: false
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  messages: #国际化
+    basename: i18n/messages
+    cache-seconds: -1
+    encoding: UTF-8
+
+  datasource:
+    poolName: ${spring.application.name}
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mysql.einwin.com:5630/framework-demo?tinyInt1isBit=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+    username: bestpractice
+    password: Best@2017
+    autoCommit: false
+    minIdle: 5
+    maximumPoolSize: 20
+    connectionInitSql: select 1
+    hikari:
+      idle-timeout: 10000
+
+server:
+  port: 9876
+  context-path: /
+  compression: #压缩
+    enabled: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname:eureka.einwin.com}:${eureka.server.port:18761}/eureka/
+  instance: #在服务端显示ip地址
+    prefer-ip-address: true
+
+
+
+mybatis:
+#    type-aliases-package: com.example.domain.model
+#    type-handlers-package: com.example.typehandler
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30
+    mapperLocations: classpath*:com/einwin/ec/book/provider/mapper/*.xml
+
+logging:
+  file: ${spring.application.name}
+  level:
+    ROOT: INFO
+    org.springframework: INFO
+    org.springframework.web.servlet.view: DEBUG
+    org.springframework.web.servlet.mvc: DEBUG
+    io.undertow.request: ERROR
+    com.einwin: DEBUG
+    com.einwin.framework.mybatis: DEBUG
+
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 30000
+        requestVolumeThreshold: 50
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: SEMAPHORE
+          semaphore:
+            maxConcurrentRequests: 50
+          thread:
+            timeoutInMilliseconds: 100000
+#
+#security:
+#  user:
+#    name: mao
+#    password: 123

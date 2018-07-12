@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ec-book.iml" filepath="$PROJECT_DIR$/ec-book.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec-book-api/ec-book-api.iml" filepath="$PROJECT_DIR$/ec-book-api/ec-book-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec-book-client/ec-book-client.iml" filepath="$PROJECT_DIR$/ec-book-client/ec-book-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec-book-provider/ec-book-provider.iml" filepath="$PROJECT_DIR$/ec-book-provider/ec-book-provider.iml" />
+    </modules>
+  </component>
+</project>
